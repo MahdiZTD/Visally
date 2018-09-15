@@ -18,8 +18,12 @@ android {
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
+        debug {
+            buildConfigField("String", "BASE_URL_NEWS", "\"http://visally.com/wp-json/wp/v2/\"")
+        }
         release {
-            minifyEnabled false
+            minifyEnabled true
+            buildConfigField("String", "BASE_URL_NEWS", "\"http://visally.com/wp-json/wp/v2/\"")
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -37,10 +41,14 @@ dependencies {
     implementation "com.android.support.constraint:constraint-layout:$constraint_layout"
 
     /**
+     * retrofit
+     */
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+    /**
      * room database
      */
     implementation "android.arch.persistence.room:runtime:$room_database"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     kapt "android.arch.persistence.room:compiler:$room_database"
 
     /**
@@ -74,11 +82,22 @@ dependencies {
      */
     implementation "com.google.code.gson:gson:$gson_version"
 
+//    /**
+//     *
+//     */
+//    debugImplementation "com.readystatesoftware.chuck:library:$chuck"
+//    releaseImplementation "com.readystatesoftware.chuck:library-no-op:$chuck"
     /**
      * deepLink
      */
     implementation "com.airbnb:deeplinkdispatch:$deep_link_version"
     kapt "com.airbnb:deeplinkdispatch-processor:$deep_link_version"
+
+    /**
+     * lifeCycle
+     */
+    implementation "android.arch.lifecycle:extensions:$lifecycle"
+    annotationProcessor "android.arch.lifecycle:compiler:$lifecycle"
 
     /**
      * test utils
@@ -87,5 +106,5 @@ dependencies {
     testImplementation "org.mockito:mockito-core:$mockito"
     androidTestImplementation "com.android.support.test:runner:$test_runner"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso"
-    implementation 'com.android.support:recyclerview-v7:28.0.0-alpha3'
+    implementation "com.android.support:recyclerview-v7:$app_compat"
 }

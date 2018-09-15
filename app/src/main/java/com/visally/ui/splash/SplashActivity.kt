@@ -1,4 +1,4 @@
-package com.visally.ui.news_detail
+package com.visally.ui.splash
 
 import android.content.Intent
 import android.databinding.DataBindingUtil

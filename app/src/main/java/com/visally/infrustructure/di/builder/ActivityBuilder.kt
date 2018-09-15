@@ -1,6 +1,9 @@
 package com.visally.infrustructure.di.builder
 
+import com.visally.ui.news_list.NewsListActivity
+import com.visally.ui.news_list.NewsListModule
 import dagger.Module
+import dagger.android.ContributesAndroidInjector
 
 /*************************************
  *This File Is created By
@@ -11,4 +14,6 @@ import dagger.Module
 
 @Module
 abstract class ActivityBuilder {
+    @ContributesAndroidInjector(modules = [NewsListModule::class])
+    abstract fun bindMainActivity(): NewsListActivity
 }

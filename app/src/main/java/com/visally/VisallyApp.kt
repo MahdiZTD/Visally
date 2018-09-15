@@ -14,10 +14,10 @@ class VisallyApp : Application(),HasActivityInjector {
     @Inject
     lateinit var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
 
-    private
+    @Inject
     lateinit var mCalligraphyConfig: CalligraphyConfig
 
-    override fun activityInjector(): DispatchingAndroidInjector<Activity>? {
+    override fun activityInjector(): DispatchingAndroidInjector<Activity> {
          return activityDispatchingAndroidInjector
     }
 

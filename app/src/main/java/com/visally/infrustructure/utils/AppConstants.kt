@@ -10,6 +10,7 @@ class AppConstants {
     companion object {
         val TIMESTAMP_FORMAT:String="yyyyMMdd_HHmmss"
         val DL_BASE_APP_SCHEMA = "irgov://"
+        val DB_NAME = "VisallyDataBase"
     }
 
 }

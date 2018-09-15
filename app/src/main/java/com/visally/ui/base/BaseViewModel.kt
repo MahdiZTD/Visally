@@ -19,5 +19,4 @@ abstract class BaseViewModel<N> constructor(schedulerProvider:SchedulersProvider
         super.onCleared()
     }
 
-
 }
