@@ -1,6 +1,7 @@
 package com.visally.infrustructure.utils.rx
 
 import io.reactivex.Scheduler
+import rx.android.schedulers.AndroidSchedulers
 
 /**
  * Created by Mahdi_ZareTahghighDoost(ZTD)

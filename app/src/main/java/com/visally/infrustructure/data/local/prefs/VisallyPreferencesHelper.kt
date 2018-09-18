@@ -2,13 +2,17 @@ package com.visally.infrustructure.data.local.prefs
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.visally.infrustructure.di.PreferenceInfo
+import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Created by Mahdi_ZareTahghighDoost(ZTD)
  *  on 7/12/2018.
  */
-class VisallyPreferencesHelper constructor(context: Context,prefFileName:String):PreferencesHelper {
-    private lateinit var mPref:SharedPreferences
+@Singleton
+class VisallyPreferencesHelper @Inject constructor(context: Context, @PreferenceInfo prefFileName:String):PreferencesHelper {
+    private var mPref:SharedPreferences
 
     init {
         mPref = context.getSharedPreferences(prefFileName,Context.MODE_PRIVATE)

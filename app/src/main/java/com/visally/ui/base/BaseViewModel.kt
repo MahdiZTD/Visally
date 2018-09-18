@@ -11,7 +11,11 @@ abstract class BaseViewModel<N> constructor(schedulerProvider:SchedulersProvider
 
     val mIsLoading = ObservableBoolean(false)
     var compositeDisposable:CompositeDisposable= CompositeDisposable()
-    var mNavigator: WeakReference<N>? = null
+    lateinit var mNavigator: WeakReference<N>
+
+    fun setNavigator(navigator: N) {
+        this.mNavigator = WeakReference(navigator)
+    }
 
 
     override fun onCleared() {

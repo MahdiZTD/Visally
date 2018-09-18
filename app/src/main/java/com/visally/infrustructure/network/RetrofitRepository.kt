@@ -4,6 +4,8 @@ import android.content.Context
 import com.visally.infrustructure.data.remote.ApiEndPoint
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -28,6 +30,8 @@ class RetrofitRepository {
         return Retrofit.Builder()
                 .baseUrl(ApiEndPoint.ENDPOINT_NEWS)
                 .client(httpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
     }
 }

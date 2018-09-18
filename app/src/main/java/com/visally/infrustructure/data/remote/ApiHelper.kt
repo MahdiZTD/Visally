@@ -1,5 +1,6 @@
 package com.visally.infrustructure.data.remote
 
+import com.visally.infrustructure.data.model.api.NewsByPageResponse
 import com.visally.infrustructure.data.model.db.BlogNewsModel
 import io.reactivex.Single
 
@@ -9,5 +10,5 @@ import io.reactivex.Single
  */
 interface ApiHelper {
 
-    fun getNewsApiCall():Single<List<BlogNewsModel>>
+    fun getNewsApiCall(page:String,perPage:String):Single<List<NewsByPageResponse>>
 }

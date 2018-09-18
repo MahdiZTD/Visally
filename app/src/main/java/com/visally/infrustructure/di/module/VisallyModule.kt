@@ -11,14 +11,18 @@ import com.visally.infrustructure.data.VisallyDataManger
 import com.visally.infrustructure.data.local.db.DbHelper
 import com.visally.infrustructure.data.local.db.VisallyDatabase
 import com.visally.infrustructure.data.local.db.VisallyDbHelper
+import com.visally.infrustructure.data.local.prefs.PreferencesHelper
+import com.visally.infrustructure.data.local.prefs.VisallyPreferencesHelper
+import com.visally.infrustructure.data.remote.ApiHelper
+import com.visally.infrustructure.data.remote.VisallyApiHelper
 import com.visally.infrustructure.di.DatabaseInfo
+import com.visally.infrustructure.di.PreferenceInfo
 import com.visally.infrustructure.utils.AppConstants
 import com.visally.infrustructure.utils.rx.SchedulersProvider
 import com.visally.infrustructure.utils.rx.VisallySchedulerProvider
 import dagger.Module
 import dagger.Provides
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
-import java.security.AccessControlContext
 import javax.inject.Singleton
 
 @Module
@@ -43,6 +47,17 @@ class VisallyModule {
         return appDbHelper
     }
 
+    @Provides
+    @Singleton
+    internal fun providePreferenceHelper(preferencesHelper: VisallyPreferencesHelper): PreferencesHelper{
+        return preferencesHelper
+    }
+
+    @Provides
+    @PreferenceInfo
+    internal fun providePreferenceName():String{
+        return AppConstants.PREF_NAME
+    }
 
     @Provides
     internal fun provideSchedulerProvider(): SchedulersProvider {
@@ -75,5 +90,13 @@ class VisallyModule {
                 .setFontAttrId(R.attr.fontPath)
                 .build()
     }
+
+
+    @Provides
+    @Singleton
+    internal fun provideApiHelper(): ApiHelper {
+        return VisallyApiHelper()
+    }
+
 
 }

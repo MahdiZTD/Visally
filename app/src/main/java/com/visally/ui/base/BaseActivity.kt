@@ -11,7 +11,6 @@ import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
 import android.view.inputmethod.InputMethodManager
-import com.visally.infrustructure.utils.CommonUtils
 import com.visally.infrustructure.utils.NetworkUtils
 import dagger.android.AndroidInjection
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
@@ -23,7 +22,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
     // this can probably depend on isLoading variable of BaseViewModel,
     // since its going to be common for all the activities
     private var mProgressDialog: ProgressDialog? = null
-    var viewDataBinding: T? = null
+    lateinit var viewDataBinding: T
         private set
     private var mViewModel: V? = null
 
@@ -45,7 +44,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
      *
      * @return view model instance
      */
-    abstract val viewModel: V
+    abstract val mNewsListViewModel: V
 
     val isNetworkConnected: Boolean
         get() = NetworkUtils.isNetworkConnected(applicationContext)
@@ -106,8 +105,8 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
 
     private fun performDataBinding() {
         viewDataBinding = DataBindingUtil.setContentView(this, layoutId)
-        this.mViewModel = if (mViewModel == null) viewModel else mViewModel
-        viewDataBinding!!.setVariable(bindingVariable, mViewModel)
-        viewDataBinding!!.executePendingBindings()
+        this.mViewModel = if (mViewModel == null) mNewsListViewModel else mViewModel
+        viewDataBinding.setVariable(bindingVariable, mViewModel)
+        viewDataBinding.executePendingBindings()
     }
 }
