@@ -21,7 +21,9 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
     var baseActivity: BaseActivity<T,*>? = null
         private set
     private var mRootView: View? = null
-    var viewDataBinding: T? = null
+
+    lateinit var viewDataBinding: T
+
         private set
     private var mViewModel: V? = null
 
@@ -52,8 +54,8 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
         super.onAttach(context)
         if (context is BaseActivity<*, *>) {
             val activity = context as BaseActivity<*, *>?
-            this.baseActivity = activity as BaseActivity<T, *>?
-            activity!!.onFragmentAttached()
+            this.baseActivity = activity as BaseActivity<T, *>
+            activity.onFragmentAttached()
         }
     }
 
@@ -66,7 +68,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewDataBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
-        mRootView = viewDataBinding!!.root
+        mRootView = viewDataBinding.root
         return mRootView
     }
 
@@ -77,8 +79,8 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewDataBinding!!.setVariable(bindingVariable, mViewModel)
-        viewDataBinding!!.executePendingBindings()
+        viewDataBinding.setVariable(bindingVariable, mViewModel)
+        viewDataBinding.executePendingBindings()
     }
 
     fun hideKeyboard() {

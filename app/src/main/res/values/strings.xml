@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Visally</string>
     <string name="img_splash">img_splash</string>
+    <string name="search">Search</string>
+    <string name="search_news_hint">Search News …</string>
+
 </resources>

@@ -14,7 +14,7 @@ import dagger.Provides
 @Module
 class NewsListModule {
     @Provides
-    fun provideViewModelProvide(newsListViewModel: NewsListViewModel): ViewModelProvider.Factory {
+    fun provideViewModelProvider(newsListViewModel: NewsListViewModel): ViewModelProvider.Factory {
         return ViewModelProviderFactory(newsListViewModel)
     }
 

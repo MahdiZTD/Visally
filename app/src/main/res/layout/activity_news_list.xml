@@ -14,5 +14,36 @@
         android:layout_height="match_parent"
         tools:context=".ui.news_list.NewsListActivity">
 
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar_news_lis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar_news_list"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"/>
+        </android.support.design.widget.AppBarLayout>
+
+        <FrameLayout
+            android:id="@+id/frame_news_list_menu"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/md_white_1000"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appbar_news_lis"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/md_pink_500"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frame_news_list_menu" />
     </android.support.constraint.ConstraintLayout>
 </layout>

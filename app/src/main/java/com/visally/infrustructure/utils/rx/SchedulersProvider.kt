@@ -1,7 +1,7 @@
 package com.visally.infrustructure.utils.rx
 
 import io.reactivex.Scheduler
-import rx.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 /**
  * Created by Mahdi_ZareTahghighDoost(ZTD)
@@ -9,9 +9,9 @@ import rx.android.schedulers.AndroidSchedulers
  */
 interface SchedulersProvider {
 
-    abstract fun computation(): Scheduler
+    fun computation(): Scheduler
 
-    abstract fun io(): Scheduler
+    fun io(): Scheduler
 
-    abstract fun ui(): rx.Scheduler?
+    fun ui(): Scheduler
 }

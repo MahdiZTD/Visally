@@ -21,7 +21,6 @@ class RetrofitRepository {
 
     fun getNewsRetrofit():Retrofit{
         val httpClient =OkHttpClient.Builder()
-//                .addInterceptor(ChuckInterceptor(context))
                 .readTimeout(defaultOkHttpRequestTimeoutSeconds, TimeUnit.SECONDS)
                 .writeTimeout(defaultOkHttpResponseTimeoutSeconds, TimeUnit.SECONDS)
                 .connectTimeout(defaultOkHttpTimeoutSeconds, TimeUnit.SECONDS)

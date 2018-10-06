@@ -6,6 +6,7 @@ import com.visally.infrustructure.data.model.db.BlogNewsModel
 import com.visally.infrustructure.utils.rx.SchedulersProvider
 import com.visally.ui.base.BaseViewModel
 import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
 
 /**
  * Created by Mahdi_ZareTahghighDoost(ZTD)
@@ -15,16 +16,16 @@ import io.reactivex.Scheduler
 class NewsListViewModel(private val schedulerProvider: SchedulersProvider, private val dataManager: DataManager) : BaseViewModel<NewsListNavigator>(schedulerProvider, dataManager) {
 
     fun loadNewsList(): List<BlogNewsModel> {
-        dataManager.getNewsApiCall("1", "10")
-                .subscribeOn(schedulerProvider.io())
-                .observeOn(schedulerProvider.ui() as Scheduler)
-                .subscribe({ newses ->
-                    run {
-                        Log.d("Tag", "message")
-                    }
-                }, { error ->
-
-                })
+//        dataManager.getNewsApiCall("1", "10")
+//                .subscribeOn(schedulerProvider.io())
+//                .observeOn(schedulerProvider.ui())
+//                .subscribe({ newses ->
+//                    run {
+//                        Log.d("Tag", "message")
+//                    }
+//                }, { error ->
+//                    error.printStackTrace()
+//                })
         return emptyList()
     }
 }

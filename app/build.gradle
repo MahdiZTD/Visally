@@ -39,6 +39,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "com.android.support:appcompat-v7:$app_compat"
     implementation "com.android.support.constraint:constraint-layout:$constraint_layout"
+    implementation "com.android.support:recyclerview-v7:$recycler_view"
+    implementation "com.android.support:design:$support_design"
 
     /**
      * retrofit
@@ -51,12 +53,13 @@ dependencies {
      * room database
      */
     implementation "android.arch.persistence.room:runtime:$room_database"
+    implementation 'com.android.support:support-v4:28.0.0'
     kapt "android.arch.persistence.room:compiler:$room_database"
 
     /**
      * rxJava and RxAndroid
      */
-    implementation "io.reactivex:rxandroid:$rx_android"
+    implementation "io.reactivex.rxjava2:rxandroid:$rx_android"
     implementation "io.reactivex.rxjava2:rxjava:$rx_java"
 
     /**
@@ -84,11 +87,10 @@ dependencies {
      */
     implementation "com.google.code.gson:gson:$gson_version"
 
-//    /**
-//     *
-//     */
-//    debugImplementation "com.readystatesoftware.chuck:library:$chuck"
-//    releaseImplementation "com.readystatesoftware.chuck:library-no-op:$chuck"
+    /**
+     *
+     */
+
     /**
      * deepLink
      */
@@ -108,5 +110,5 @@ dependencies {
     testImplementation "org.mockito:mockito-core:$mockito"
     androidTestImplementation "com.android.support.test:runner:$test_runner"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso"
-    implementation "com.android.support:recyclerview-v7:$app_compat"
+
 }

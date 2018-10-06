@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="menu_array">
+        <item>Canada News</item>
+        <item>USA News</item>
+        <item>Europe News</item>
+        <item>Australia News</item>
+    </array>
+</resources>

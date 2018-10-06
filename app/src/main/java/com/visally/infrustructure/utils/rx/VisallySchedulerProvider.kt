@@ -1,8 +1,8 @@
 package com.visally.infrustructure.utils.rx
 
 import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import rx.android.schedulers.AndroidSchedulers
 
 /**
  * Created by Mahdi_ZareTahghighDoost(ZTD)
@@ -17,7 +17,7 @@ class VisallySchedulerProvider :SchedulersProvider{
         return Schedulers.io()
     }
 
-    override fun ui(): rx.Scheduler? {
+    override fun ui(): Scheduler {
         return AndroidSchedulers.mainThread()
     }
 }
