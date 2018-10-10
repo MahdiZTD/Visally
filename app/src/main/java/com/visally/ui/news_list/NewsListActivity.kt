@@ -25,8 +25,11 @@ import kotlinx.android.synthetic.main.activity_news_list.*
 import java.util.*
 import javax.inject.Inject
 import android.opengl.ETC1.getWidth
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.animation.TranslateAnimation
-
+import com.visally.ui.news_list.adapter.NewsListRecyclerAdapter
+import timber.log.Timber
 
 
 class NewsListActivity : BaseActivity<ActivityNewsListBinding, NewsListViewModel>(), NewsListNavigator, SearchView.OnQueryTextListener, HasSupportFragmentInjector {
@@ -49,6 +52,7 @@ class NewsListActivity : BaseActivity<ActivityNewsListBinding, NewsListViewModel
     private lateinit var mActivityNewsListBinding: ActivityNewsListBinding // data binding of xml layout file
     private var isMenuVisible: Boolean = false
     private lateinit var mMenu: FrameLayout
+    private lateinit var newsListRv:RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +71,11 @@ class NewsListActivity : BaseActivity<ActivityNewsListBinding, NewsListViewModel
         toolbar.setNavigationOnClickListener {
             toggleMenu()
         }
-
+        newsListRv = mActivityNewsListBinding.recyclerView.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context)
+            adapter = NewsListRecyclerAdapter()
+        }
     }
 
     private fun setUpMenu() {
@@ -111,10 +119,25 @@ class NewsListActivity : BaseActivity<ActivityNewsListBinding, NewsListViewModel
     override fun toggleMenu() {
         if (isMenuVisible) {
             isMenuVisible = false
-            mMenu.visibility = View.GONE
+            mMenu.visibility = View.VISIBLE
         } else {
             isMenuVisible=true
-            mMenu.visibility = View.VISIBLE
+            mMenu.visibility = View.GONE
         }
+    }
+
+    fun slideUp(view: View) {
+        Timber.d("up")
+        view.animate()
+                .translationYBy(view.height.toFloat())
+                .translationY(0f).duration = 500
+    }
+
+    // slide the view from its current position to below itself
+    fun slideDown(view: View) {
+        Timber.d("down")
+        view.animate()
+                .translationYBy(0f)
+                .translationY(view.height.toFloat()).duration = 500
     }
 }

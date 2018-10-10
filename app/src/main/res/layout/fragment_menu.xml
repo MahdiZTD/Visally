@@ -13,11 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.menu_fragment.MenuFragment"
-        android:background="@color/md_yellow_200">
+        android:background="@color/md_grey_900">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_menu_list"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"/>
     </FrameLayout>
