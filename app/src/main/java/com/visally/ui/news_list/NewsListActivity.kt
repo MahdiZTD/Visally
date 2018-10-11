@@ -25,9 +25,14 @@ import kotlinx.android.synthetic.main.activity_news_list.*
 import java.util.*
 import javax.inject.Inject
 import android.opengl.ETC1.getWidth
+import android.support.constraint.ConstraintLayout
+import android.support.constraint.ConstraintSet
+import android.support.transition.ChangeBounds
+import android.support.transition.TransitionManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.animation.TranslateAnimation
+import android.view.ViewGroup
+import android.view.animation.*
 import com.visally.ui.news_list.adapter.NewsListRecyclerAdapter
 import timber.log.Timber
 
@@ -53,6 +58,9 @@ class NewsListActivity : BaseActivity<ActivityNewsListBinding, NewsListViewModel
     private var isMenuVisible: Boolean = false
     private lateinit var mMenu: FrameLayout
     private lateinit var newsListRv:RecyclerView
+    private lateinit var rootView: ConstraintLayout
+    val menuOpened = ConstraintSet()
+    val menuClosed = ConstraintSet()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,14 +72,18 @@ class NewsListActivity : BaseActivity<ActivityNewsListBinding, NewsListViewModel
     private fun setUp() {
         toolbar = mActivityNewsListBinding.toolbarNewsList
         mMenu = mActivityNewsListBinding.frameNewsListMenu
+        rootView = mActivityNewsListBinding.constraintNewsList
+
+        menuClosed.clone(rootView)
+        menuOpened.clone(this, R.layout.activity_news_list_alt)
+
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         setUpMenu()
-        toolbar.setNavigationIcon(R.drawable.ic_menu_black)
         toolbar.setNavigationOnClickListener {
             toggleMenu()
         }
-        newsListRv = mActivityNewsListBinding.recyclerView.apply {
+        newsListRv = mActivityNewsListBinding.rvNewsList.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
             adapter = NewsListRecyclerAdapter()
@@ -96,7 +108,6 @@ class NewsListActivity : BaseActivity<ActivityNewsListBinding, NewsListViewModel
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         searchView.setIconifiedByDefault(true)
         searchView.setOnQueryTextListener(this)
-
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -117,27 +128,19 @@ class NewsListActivity : BaseActivity<ActivityNewsListBinding, NewsListViewModel
      * news List Navigator and will show and invisible the menu
      */
     override fun toggleMenu() {
-        if (isMenuVisible) {
-            isMenuVisible = false
-            mMenu.visibility = View.VISIBLE
-        } else {
-            isMenuVisible=true
-            mMenu.visibility = View.GONE
+        val transition = ChangeBounds()
+        transition.interpolator = DecelerateInterpolator()
+        transition.duration = 350
+        TransitionManager.beginDelayedTransition(rootView,transition)
+        val constraint = if(isMenuVisible) {
+            toolbar.setNavigationIcon(R.drawable.ic_menu_black)
+            menuClosed
+        }else {
+            toolbar.setNavigationIcon(R.drawable.ic_close_black)
+            menuOpened
         }
-    }
 
-    fun slideUp(view: View) {
-        Timber.d("up")
-        view.animate()
-                .translationYBy(view.height.toFloat())
-                .translationY(0f).duration = 500
-    }
-
-    // slide the view from its current position to below itself
-    fun slideDown(view: View) {
-        Timber.d("down")
-        view.animate()
-                .translationYBy(0f)
-                .translationY(view.height.toFloat()).duration = 500
+        constraint.applyTo(rootView)
+        isMenuVisible = !isMenuVisible
     }
 }

@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:minHeight="203dp">
+    android:layout_height="wrap_content">
 
     <View
         android:layout_width="1dp"
@@ -17,12 +16,10 @@
 
     <TextView
         android:id="@+id/txt_item_news_time"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
         android:background="@drawable/bg_circle_blue_600"
         android:gravity="center"
         android:textColor="@color/md_white_1000"
@@ -35,12 +32,13 @@
     <TextView
         android:id="@+id/txt_item_news_title"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="34dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         android:gravity="start|center_vertical"
         android:lines="3"
         android:maxLines="3"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+        android:text="Ontario invites 16 entrepreneurs to apply"
         android:textColor="@color/md_grey_900"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -57,16 +55,19 @@
         android:maxLines="2"
         android:textColor="@color/md_grey_600"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:text="The Government of Ontario has issued 16 new invitations to apply to entrepreneurs in a draw held September 21.he minimum score for the latest draw was 117."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txt_item_news_time"
         app:layout_constraintTop_toBottomOf="@+id/txt_item_news_title" />
 
     <ImageView
+        android:id="@+id/img_item_news"
         android:layout_width="0dp"
-        android:layout_height="170dp"
-        android:layout_margin="10dp"
+        android:layout_height="160dp"
+        android:layout_margin="5dp"
+        android:scaleType="centerCrop"
         app:layout_constraintStart_toEndOf="@id/txt_item_news_time"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_item_news_content"/>
@@ -75,7 +76,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="50dp" />
+        app:layout_constraintGuide_begin="30dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/horizontal_guideline"

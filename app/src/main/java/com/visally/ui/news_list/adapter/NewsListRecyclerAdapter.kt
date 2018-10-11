@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.visally.R
 import kotlinx.android.synthetic.main.item_menu_main.view.*
 import kotlinx.android.synthetic.main.item_news_list.view.*
@@ -25,6 +26,11 @@ class NewsListRecyclerAdapter (): RecyclerView.Adapter<NewsListRecyclerAdapter.V
 
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
         p0.view.txt_item_news_time.text = p1.toString()
+        Glide.with(p0.view.context)
+                .load("https://www.canadavisa.com/images/vancouver-landscape.jpg")
+                .into(p0.view.img_item_news)
+
+
     }
 
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view)
